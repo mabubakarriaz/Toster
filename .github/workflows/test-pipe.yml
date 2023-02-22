@@ -28,7 +28,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         shell: powershell
-        run: choco install postgresql15
+        run: choco upgrade postgresql --version=15.2
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
