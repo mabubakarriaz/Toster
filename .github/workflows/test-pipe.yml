@@ -31,6 +31,11 @@ jobs:
         run: choco install postgresql -y --version=15.2
 
       # Runs a set of commands using the runners shell
+      - name: version check
+        shell: powershell
+        run: 'postgres --version'
+
+      # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         shell: powershell
         run: 'Get-ChildItem -Path Env:'
