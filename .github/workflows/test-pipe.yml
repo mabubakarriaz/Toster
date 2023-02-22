@@ -30,7 +30,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # maintain cache of JAVA installation
+      # maintain cache of PostgreSQL installation
       - name: Cache Postgres
         id: cache-postgres
         uses: actions/cache@v3
@@ -39,12 +39,12 @@ jobs:
          key: ${{ runner.os }}-postgres-15
          restore-keys: ${{ runner.os }}-postgres-15
 
-       # Set cache path
+       # Set postgres path
       - name: Set path
         run: echo "${{ env.POSTGRES_HOME }}\bin" | Out-File -FilePath $ENV:GITHUB_PATH -Encoding utf8 -Append
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
+      # Install Postgres SQL 
+      - name: Install Postgres
         if: ${{steps.cache-postgres.outputs.cache-hit != 'true'}} # condition to check if old installation is available in cache
         shell: powershell
         run: choco install postgresql -y --version=${{ env.POSTGRES_VERSION }} 
